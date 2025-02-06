@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="POST" action="index.php">
+    <form method="POST" action="index.php" id="adres-Form">
         <label form="name">
         Name:
             <input type="text" name="name" id="name"><br><br>
@@ -55,15 +55,67 @@
         <input type="submit" value="Registreer" name="submit">
     </form>
 
+    <form method="post" action="index.php" id="Partner-Form">
+
+    <label>
+        Company Name:
+        <input type="text" name="companyName">
+    </label><br>
+
+    <label>
+        Adres:
+        <input type="text" name="adres">
+    </label><br>
+    
+    <label>
+        E-mail:
+        <input type="email" name="email">
+    </label><br>
+    
+    <label>
+        Website:
+        <input type="text" name="website">
+    </label><br>
+    
+    <label>
+        Description:
+        <input type="text" name="description">
+    </label><br>
+    
+    <label>
+        VAT:
+        <input type="text" name="vatNumber">
+    </label><br>
+    
+    <label>
+        COC:
+        <input type="text" name="cocNumber">
+    </label><br>
+    
+    <label>
+        Phone Number:
+        <input type="text" name="phoneNumber">
+    </label><br>
+
+    <input type="submit" name="Submit" value="Submit Form">
+
+    </form>
     
 </body>
 </html>
 
 <?php
-include("Models/Person.php");
-include("Models/Adres.php");
+include "Models/Person.php";
+include "Models/Adres.php";
+include "Models/Partner.php";
 
-if (empty($_POST['name']) || empty($_POST['phoneNumber']) || empty($_POST['email']) || empty($_POST['dateofbirth'])) {
+if (
+    empty($_POST['name']) ||
+    empty($_POST['phoneNumber']) ||
+    empty($_POST['email']) ||
+    empty($_POST['dateofbirth'])
+
+) {
     echo 'Please fill in all fields.';
 } else {
     $name = $_POST['name'];
@@ -79,6 +131,35 @@ if (empty($_POST['name']) || empty($_POST['phoneNumber']) || empty($_POST['email
 
 $adres = new Adres($_POST['postalCode'], $_POST['streetName'], $_POST['streetNumber'], $_POST['country'], $_POST['city']);
 
-    echo $adres;
+echo $adres;
 
-    ?>
+
+
+
+
+
+$partner = new Partner($companyName, $adres, $email, $website, $description, $vatNumber, $cocNumber, $phoneNumber);
+
+echo $Partner;
+
+
+if (isset($_POST['submit'])) {
+    if (
+        empty($_POST["companyName"]) ||
+        empty($_POST["adres"]) ||
+        empty($_POST["email"]) ||
+        empty($_POST["website"]) ||
+        empty($_POST["description"]) ||
+        empty($_POST["vatNumber"]) ||
+        empty($_POST["cocNumber"]) ||
+        empty($_POST["phoneNumber"])
+    ) {
+        echo "Please fill in all fields!";
+    }
+
+}
+
+
+
+
+?>
