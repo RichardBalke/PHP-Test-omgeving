@@ -1,0 +1,26 @@
+h1 {
+    font-size: 50px;
+    color: #0202a3;
+}
+
+h2 {
+    font-size: 30px;
+    color: #35a302;
+}
+
+p {
+    font-size: 18px;
+    color: #000000;
+}
+
+#naam {
+    color: grey;
+}
+
+#adres {
+    color: rgb(122, 27, 27);
+}
+
+#postcode {
+    color: rgb(27, 122, 27);
+}
